@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
     #Librerias agregadas al proyecto
     'rest_framework',
-    'rest_framework.authtoken',
+    #'rest_framework.authtoken',
 ]
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
