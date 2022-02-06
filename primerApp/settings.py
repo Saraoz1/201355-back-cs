@@ -38,9 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Componentes Agregados
+    'primerComponente',
+    #'Login',
+    #'Register',
 
-    #Librerias agregar al proyecto
+    #Librerias agregadas al proyecto
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
