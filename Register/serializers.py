@@ -1,3 +1,5 @@
+from distutils.command.upload import upload
+from email.mime import image
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
@@ -8,6 +10,7 @@ class UserSerializer(serializers.Serializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField()
+  #  imagen = serializers.ImageField(upload_to="clienteImagenes", null=True)
 
     def create(self, validate_data):
         instance = User()

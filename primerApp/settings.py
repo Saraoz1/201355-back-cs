@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+
 from dotenv import load_dotenv
 import os
 
-load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,12 +96,12 @@ WSGI_APPLICATION = 'primerApp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv ('ENGINE'),
-        'NAME': os.getenv ('NAME'),
-        'USER': os.getenv ('USER'),
-        'PASSWORD': os.getenv ('PASSWORD'),
-        'HOST': os.getenv ('HOST'),
-        'PORT': os.getenv ('PORT')
+        'ENGINE': os.getenv ("DB_ENGINE"),
+        'NAME':   os.getenv ("DB_NAME"),
+        'USER': os.getenv ("DB_USER"),
+        'PASSWORD': os.getenv ("DB_PASSWORD"),
+        'HOST': os.getenv ("DB_HOST"),
+        'PORT': os.getenv ("DB_PORT")
     }
 }
 
@@ -140,6 +141,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

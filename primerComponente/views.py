@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,13 +12,19 @@ from primerComponente.models import PrimerTabla
 
 # Importacion de serializadores
 from primerComponente.serializers import PrimerTablaSerializer
+import json
 
 # Create your views here.
+
+responseOk='{"messages":"success", "pay_load": "serializer.data", "status":"status"}'
+responseOk= json.loads(responseOk)
+
+
 class PrimerTablaList(APIView):
     def get(self, request, format = None):
         queryset = PrimerTabla.objects.all()
         serializer = PrimerTablaSerializer(queryset, many = True, context = {'request': request})
-        return Response(serializer.data)
+        return Response(responseOk)
 
     def post(self, request, format = None):
         serializer = PrimerTablaSerializer(data = request.data)
