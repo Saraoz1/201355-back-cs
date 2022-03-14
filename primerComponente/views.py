@@ -16,23 +16,38 @@ import json
 
 # Create your views here.
 
-responseOk='{"messages":"success", "pay_load": "serializer.data", "status":"status"}'
-responseOk= json.loads(responseOk)
 
 
 class PrimerTablaList(APIView):
+    def responseCustom(self, msg, response, status):
+     datas = {
+        'msg ': msg,
+        'pay_load': response,
+        'status': status
+
+    } 
+     res = json.dumps(datas)
+     responseSuccess = json.loads(res)
+     return responseSuccess
+
     def get(self, request, format = None):
         queryset = PrimerTabla.objects.all()
         serializer = PrimerTablaSerializer(queryset, many = True, context = {'request': request})
-        return Response(responseOk)
+        res = self.responseCustom("Successful", serializer.data, status= status.HTTP_200_OK)
+        return Response(res)
 
     def post(self, request, format = None):
         serializer = PrimerTablaSerializer(data = request.data)
         if serializer.is_valid():
             serializer.save()
             datas = serializer.data
-            return Response(datas, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+            res = self.responseCustom("Successful", serializer.data, status= status.HTTP_200_OK)
+            return Response(res)
+        res = self.responseCustom("Error", serializer.data, status = status.HTTP_400_BAD_REQUEST) 
+        return Response(res)
+          #  return Response(datas, status = status.HTTP_201_CREATED)
+ 
+
 
 class PrimerTablaDetail(APIView):
     def get_object(self, pk):

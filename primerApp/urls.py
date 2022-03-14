@@ -19,6 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
+
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     re_path(r'^api/v1/register/', include('Register.urls')),
     re_path(r'^api/v1/login', include('Login.urls')),
     re_path(r'^api/v1/primer_componente/', include('primerComponente.urls')),
+    re_path(r'^api/v1/load_image/', include('loadImage.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 #if settings.DEBUG:
