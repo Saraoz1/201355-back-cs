@@ -7,7 +7,7 @@ class UserSerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
     first_name = serializers.CharField()
     last_name = serializers.CharField()
-    username = serializers.CharField()
+    username = serializers.CharField()  
     email = serializers.EmailField()
     password = serializers.CharField()
   #  imagen = serializers.ImageField(upload_to="clienteImagenes", null=True)
@@ -25,6 +25,6 @@ class UserSerializer(serializers.Serializer):
     def validate_username(self, data):
         users = User.objects.filter(username = data)
         if len(users) != 0:
-            raise Serializers.ValidationError("El usuario ya existe")
+            raise serializers.ValidationError("El usuario ya existe")
         else:
             return data
